@@ -69,7 +69,7 @@ local SaveManager = {} do
 
 	function SaveManager:SetIgnoreIndexes(list)
 		for _, key in next, list do
-			self.Ignore[key] = false
+			self.Ignore[key] = true
 		end
 	end
 
