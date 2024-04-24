@@ -181,7 +181,7 @@ function KeySys.Main(config)
         function()
             if PandaAuth:ValidateKey(ServiceID, text_box.Text) then
                 if writefile then
-                    writefile(config.HubName .. " Key.txt", textbox.Text)
+                    writefile(config.HubName .. "_key.txt", textbox.Text)
                 end
                 Notif.New("Key is valid! Loading " .. config.HubName .. "...", 5)
                 CloseGUI()
@@ -201,7 +201,7 @@ function KeySys.Main(config)
     )
     Notif.new("loaded", 2)
     if readfile then
-        local save_key = readfile(config.HubName .. " Key.txt")
+        local save_key = readfile(config.HubName .. "_key.txt")
         if PandaAuth:ValidateKey(ServiceID, save_key) then
             Notif.New("Key is valid! Loading " .. config.HubName .. "...", 5)
             CloseGUI()
