@@ -199,7 +199,7 @@ function KeySys.Main(config)
             Notif.New("Copied!", 2)
         end
     )
-    Notif.new("loaded", 2)
+    
     if readfile then
         local save_key = readfile(config.HubName .. "_key.txt")
         if PandaAuth:ValidateKey(ServiceID, save_key) then
