@@ -443,7 +443,6 @@ local ColorTen = Color3.fromRGB(138, 10, 10)
   local SavedKey = isfile(Name .. ".txt")
   oldstring = RandomString(10)
   function Login()
-    pcall(function()
       print("[ "..Name.." ]".." Checking Key...")
       Notify.New("["..Name.."]: Checking Key...", 2)
       if RandomString(10) == oldstring then
