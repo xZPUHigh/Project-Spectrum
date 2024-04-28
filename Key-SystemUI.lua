@@ -452,7 +452,8 @@ local ColorTen = Color3.fromRGB(138, 10, 10)
       if PandaAuth:GetKey(Service) == nil or PandaAuth:ValidateKey(Service, Object.KeyBox.Text .. RandomString(10)) then
         Notify.New("Haha kid wants to bypass PandaKeySystem v2", 2)
         wait(2)
-        while true do end
+        while true do 
+        end
       elseif PandaAuth:ValidateKey(Service, Object.KeyBox.Text) then
         print("[ " .. Name .. " ]" .. " Correct Key")
         Notify.New("[" .. Name .. "]: Correct Key", 5)
@@ -463,7 +464,7 @@ local ColorTen = Color3.fromRGB(138, 10, 10)
         print("[ " .. Name .. " ]" .. " Incorrect key..")
         Notify.New("[" .. Name .. "]: Incorrect Key", 2)
       end
-    end)
+    end
   end
   if SaveKey and SavedKey then
     Login()
