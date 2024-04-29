@@ -457,7 +457,7 @@ local ColorTen = Color3.fromRGB(138, 10, 10)
       elseif PandaAuth:ValidateKey(Service, Object.KeyBox.Text) then
         print("[ " .. Name .. " ]" .. " Correct Key")
         Notify.New("[" .. Name .. "]: Correct Key", 5)
-        SyncUI:SaveKey(Name .. ".txt", Object.KeyBox.Text)
+        SyncUI:SaveKey(Spectrum, Object.KeyBox.Text)
         Callback()
         RemoveUI()
       else
