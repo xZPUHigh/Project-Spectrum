@@ -24,7 +24,7 @@ ImageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ImageButton.BorderSizePixel = 0
 ImageButton.Position = UDim2.new(1, -(303 / 2), 0.5, -(263 / 2))
 ImageButton.Size = UDim2.new(0, 506, 0, 156)
-ImageButton.Image = "rbxassetid://17510191596"
+ImageButton.Image = "rbxassetid://17510231765"
 
 TextButton.Parent = Frame
 TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
