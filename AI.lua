@@ -1,5 +1,7 @@
 local GetGlobal = getgenv and getgenv()
-
+if not game.Loaded then
+    game.Loaded:Wait()
+end
 for i,v in next, game.GetChildren(game) do
     GetGlobal[v.ClassName] = v
 end
@@ -105,7 +107,8 @@ VG.ServerHop = function()
                 local Gay = HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. game.PlaceId .. '/servers/Public?sortOrder=Asc&limit=100'))
                 for i,v in next, Gay.data do
                     if v.playing < v.maxPlayers then
-                        TeleportService:TeleportToPlaceInstance(game.PlaceId, v.id, Player)
+
+                        TeleportService:TeleportToPlaceInstance(game.PlaceId, v.id)
                         break
                     end
                 end
@@ -388,6 +391,86 @@ VG.Flying = function(Toggle, Speed)
         end
     end
 end
+
+VG.DoNothing = function()
+    return {}
+end
+
+VG.WalkSpeed = function(Speed)
+    VG.GetHumanoid().WalkSpeed = Speed
+end
+
+VG.SemiBypassedWalkSpeed = function(Speed)
+    VG.DisableConnection(CF.GetHumanoid().Changed)
+    sethiddenproperty(VG.GetHumanoid(), "WalkSpeed", Speed)
+end
+
+VG.BypassedWalkSpeed = function(Speed)
+    local OldNameCall = nil
+    OldNameCall = hookmetamethod(game, "__index", function(A, B, C)
+        if A and B == "WalkSpeed" then
+            return Speed
+        end
+        return OldNameCall(A, B, C)
+    end)
+    VG.GetHumanoid().WalkSpeed = Speed
+end
+
+VG.SuperBypassedWalkSpeed = function(Speed)
+    VG.DisableConnection(VG.GetHumanoid())
+    local OldNameCall = nil
+    OldNameCall = hookmetamethod(game, "__index", function(A, B, C)
+        if A and B == "WalkSpeed" then
+            return Speed
+        end
+        return OldNameCall(A, B, C)
+    end)
+    sethiddenproperty(VG.GetHumanoid(), "WalkSpeed", Speed)
+end
+
+VG.Adonis = function()
+    for i,v in next, getgc(true) do
+        if type(v) == "table" then
+            local Raw = rawget(v, "Detected")
+            if Raw and typeof(Raw) == "function" and getfenv(Raw).script then
+                return true
+            end
+        end
+    end
+    return false
+end
+
+VG.AntiAdonis = function()
+    if VG.Adonis() then
+        local NewInstances = {}
+        for _,v in next, getgc(true) do
+            if type(v) == "table" then
+                local Raw, Raw2, Raw3 = rawget(v, "Detected"), rawget(v, "Kill"), rawget(v, "Disconnect")
+                if Raw and Raw2 and Raw3 and typeof(Raw) == "function" and getfenv(Raw).script then
+                    for _,v in next, v do
+                        if type(v) == "function" then
+                            print(v)
+                            table.insert(NewInstances, v)
+                        end
+                    end
+                end
+            end
+        end
+        setthreadidentity(2)
+        for _,v in next, NewInstances do
+            hookfunction(v, coroutine.yield())
+            hookfunction(v, VG.DoNothing())
+            ScriptContext.SetTimeout(0)
+        end
+        setthreadidentity(8)
+    end
+    return {{{{{{}}}}}}
+end
+ 
+VG.RigCheck = function()
+    return VG.GetHumanoid().RigType
+end
+
 
 --Loops
 
