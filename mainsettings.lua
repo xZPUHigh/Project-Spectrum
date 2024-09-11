@@ -101,7 +101,18 @@ local InterfaceManager = {} do
                 InterfaceManager:SaveSettings()
 			end
 		})
-	
+
+        section:AddToggle("BlackScreenToggle", {
+            Title = "Black Screen",
+            Description = "Disable 3DRendering for best performance.",
+            Default = Settings.BlackScreen,
+            Callback = function (Value)
+                Library.Window:Black(Value)
+                Settings.BlackScreen = Value
+                InterfaceManager:SaveSettings()
+            end
+        })
+		
 		local MenuKeybind = section:AddKeybind("MenuKeybind", { Title = "Minimize Bind", Default = "RightControl" })
 		MenuKeybind:OnChanged(function()
 			Settings.MenuKeybind = MenuKeybind.Value
