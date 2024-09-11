@@ -25,7 +25,6 @@ local a, b = {
                     {58,"ModuleScript",{"Luffy"}},
                     {59,"ModuleScript",{"Green"}},
                     {60,"ModuleScript",{"Black"}}
-                    {61, "ModuleScript", {"Pink"}}
                 }
             },
             {
@@ -1763,7 +1762,7 @@ local aa = {
                     p.Window:Minimize()
                 end
             )
-                        o.UpdateButton =
+            o.UpdateButton =
             q(
             i.Update,
             UDim2.new(1, -115, 0, 4),
@@ -5893,46 +5892,6 @@ local aa = {
             Text = Color3.fromRGB(240, 240, 240),
             SubText = Color3.fromRGB(170, 170, 170),
             Hover = Color3.fromRGB(100, 100, 100),
-            HoverChange = 0.04
-        }
-    end,
-    [61] = function()
-        local aa, ab, ac, ad, ae = b(54)
-        return {
-            Name = "Pink",
-            Accent = Color3.fromRGB(255, 165, 185),
-            AcrylicMain = Color3.fromRGB(238, 130, 238),
-            AcrylicBorder = Color3.fromRGB(255, 185, 190),
-            AcrylicGradient = ColorSequence.new(Color3.fromRGB(255, 192, 203), Color3.fromRGB(255, 192, 203)),
-            AcrylicNoise = 0.92,
-            TitleBarLine = Color3.fromRGB(255, 182, 193),
-            Tab = Color3.fromRGB(30, 30, 30),
-            Element = Color3.fromRGB(0, 0, 0),
-            ElementBorder = Color3.fromRGB(0, 0, 0),
-            InElementBorder = Color3.fromRGB(0, 0, 0),
-            ElementTransparency = 0.66,
-            ToggleSlider = Color3.fromRGB(0, 0, 0),
-            ToggleToggled = Color3.fromRGB(0, 0, 0),
-            SliderRail = Color3.fromRGB(0, 0, 0),
-            DropdownFrame = Color3.fromRGB(0, 0, 0),
-            DropdownHolder = Color3.fromRGB(0, 0, 0),
-            DropdownBorder = Color3.fromRGB(0, 0, 0),
-            DropdownOption = Color3.fromRGB(0, 0, 0),
-            Keybind = Color3.fromRGB(0, 0, 0),
-            Input = Color3.fromRGB(0, 0, 0),
-            InputFocused = Color3.fromRGB(0, 0, 0),
-            InputIndicator = Color3.fromRGB(0, 0, 0),
-            Dialog = Color3.fromRGB(0, 0, 0),
-            DialogHolder = Color3.fromRGB(0, 0, 0),
-            DialogHolderLine = Color3.fromRGB(0, 0, 0),
-            DialogButton = Color3.fromRGB(0, 0, 0),
-            DialogButtonBorder = Color3.fromRGB(0, 0, 0),
-            DialogBorder = Color3.fromRGB(0, 0, 0),
-            DialogInput = Color3.fromRGB(0, 0, 0),
-            DialogInputLine = Color3.fromRGB(0, 0, 0),
-            Text = Color3.fromRGB(0, 0, 0),
-            SubText = Color3.fromRGB(0, 0, 0),
-            Hover = Color3.fromRGB(0, 0, 0),
             HoverChange = 0.04
         }
     end
