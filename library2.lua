@@ -1763,6 +1763,19 @@ local aa = {
                     p.Window:Minimize()
                 end
             )
+                        o.UpdateButton =
+            q(
+            i.Update,
+            UDim2.new(1, -115, 0, 4),
+            o.Frame,
+            function()
+                p.Window:Dialog {
+                    Title = n.UpdateDate or "00/00/0000 [V Title]",
+                    Content = n.UpdateLog or "● Content",
+                    Buttons = {{Title = "Close"}}
+                }
+            end
+            )
             o.VisibleButton = 
             zq(
             o.Frame.Parent.Parent,
