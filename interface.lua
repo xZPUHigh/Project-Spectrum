@@ -6,7 +6,7 @@ local InterfaceManager = {} do
         Theme = "Amethyst",
         Acrylic = true,
         Transparency = false,
-        MenuKeybind = "Home"
+        MenuKeybind = "RightControl"
     }
 
     function InterfaceManager:SetFolder(folder)
@@ -102,7 +102,7 @@ local InterfaceManager = {} do
 			end
 		})
 	
-		local MenuKeybind = section:AddKeybind("MenuKeybind", { Title = "Minimize Bind", Default = "Home" })
+		local MenuKeybind = section:AddKeybind("MenuKeybind", { Title = "Minimize Bind", Default = "RightControl" })
 		MenuKeybind:OnChanged(function()
 			Settings.MenuKeybind = MenuKeybind.Value
             InterfaceManager:SaveSettings()
