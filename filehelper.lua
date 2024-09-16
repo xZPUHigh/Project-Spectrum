@@ -1,4 +1,7 @@
 local Files = {} do
+    function Files:Space()
+        return "                                                                                                                                                                                                                                                                                                                                    "
+    end
     function Files:CheckFolder(path)
         if not path then return false, "Unable To CheckFolder, Invaild Path"
         elseif not isfolder or not makefolder then return false, "Unable To CheckFolder, The Excutor Has Invaild MakeFolder Functions" end
