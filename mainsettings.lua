@@ -1,12 +1,13 @@
 local httpService = game:GetService("HttpService")
 
 local InterfaceManager = {} do
-	InterfaceManager.Folder = "FluentSettings"
+    InterfaceManager.Folder = "GuiSettings"
     InterfaceManager.Settings = {
-        Theme = "Amethyst",
-        Acrylic = true,
+        Theme = "Black",
+        Acrylic = false,
         Transparency = false,
-        MenuKeybind = "RightControl"
+        MenuKeybind = "RightControl",
+        BlackScreen = false
     }
 
     function InterfaceManager:SetFolder(folder)
@@ -27,7 +28,6 @@ local InterfaceManager = {} do
 		end
 
 		table.insert(paths, self.Folder)
-		table.insert(paths, self.Folder .. "/settings")
 
 		for i = 1, #paths do
 			local str = paths[i]
@@ -68,6 +68,7 @@ local InterfaceManager = {} do
 			Title = "Theme",
 			Description = "Changes the interface theme.",
 			Values = Library.Themes,
+			UnSelect = true,
 			Default = Settings.Theme,
 			Callback = function(Value)
 				Library:SetTheme(Value)
@@ -97,7 +98,7 @@ local InterfaceManager = {} do
 			Default = Settings.Transparency,
 			Callback = function(Value)
 				Library:ToggleTransparency(Value)
-				Settings.Transparency = false
+				Settings.Transparency = Value
                 InterfaceManager:SaveSettings()
 			end
 		})
@@ -112,14 +113,17 @@ local InterfaceManager = {} do
                 InterfaceManager:SaveSettings()
             end
         })
-		
-		local MenuKeybind = section:AddKeybind("MenuKeybind", { Title = "Minimize Bind", Default = "RightControl" })
+	
+		local MenuKeybind = section:AddKeybind("MenuKeybind", { Title = "Minimize Bind", Default = Settings.MenuKeybind })
 		MenuKeybind:OnChanged(function()
 			Settings.MenuKeybind = MenuKeybind.Value
             InterfaceManager:SaveSettings()
 		end)
 		Library.MinimizeKeybind = MenuKeybind
     end
+end
+
+return InterfaceManager
 end
 
 return InterfaceManager
