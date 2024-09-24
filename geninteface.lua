@@ -118,7 +118,7 @@ local aa = {
         local t, u, v = e(s.Notification), p.New, protectgui or (syn and syn.protect_gui) or function()
                 end
         local w = u("ScreenGui", {Parent = i:IsStudio() and j.PlayerGui or game:GetService "CoreGui"})
-        w.Name = "Project Spectrum"
+        w.Name = "CrazyDay"
         v(w)
         t:Init(w)
         local x = {
@@ -130,7 +130,7 @@ local aa = {
             WindowFrame = nil,
             Unloaded = false,
             Reseting = false,
-            Theme = "Darker",
+            Theme = "Black",
             DialogOpen = false,
             UseAcrylic = false,
             Acrylic = false,
@@ -1545,6 +1545,7 @@ local aa = {
         local j, k = e(h.Creator), e(h.Packages.Flipper)
         local l, m = j.New, j.AddSignal
         return function(n)
+            local xo = e(h)
             local o, p, q, zq =
                 {},
                 e(h),
@@ -1612,7 +1613,7 @@ local aa = {
                 end,
                 function(q, p, r)
                     local s = {Callback = r or function()
-                    end}
+                    end, Dragging = nil, DragA = nil, DragB = nil, DragC = nil}
                     if n.IconVisual == "" or n.IconVisual == nil then
                         s.Frame =
                         l(
@@ -1658,6 +1659,64 @@ local aa = {
                             s.Callback = v
                         end
                     end
+                    m(
+                        s.Frame.InputBegan,
+                        function(M)
+                            if M.UserInputType == Enum.UserInputType.MouseButton1 or M.UserInputType == Enum.UserInputType.Touch then
+                                s.Dragging = true
+                                s.DragA = M.Position
+                                s.DragB = s.Frame.Position
+                                M.Changed:Connect(
+                                    function()
+                                        if M.UserInputState == Enum.UserInputState.End then
+                                            s.Dragging = false
+                                        end
+                                    end
+                                )
+                            end
+                        end
+                    )
+                    m(
+                        s.Frame.InputChanged,
+                        function(M)
+                            if M.UserInputType == Enum.UserInputType.MouseMovement or M.UserInputType == Enum.UserInputType.Touch then
+                                s.DragC = M
+                            end
+                        end
+                    )
+                    m(
+                        game:GetService("UserInputService").InputChanged,
+                        function(M)
+                            if M == s.DragC and s.Dragging then
+                                local w = M.Position - s.DragA
+                                local c = UDim2.new(s.DragB.X.Scale, s.DragB.X.Offset + w.X, s.DragB.Y.Scale, s.DragB.Y.Offset + w.Y)
+                                game:GetService("TweenService"):Create(s.Frame, TweenInfo.new(0.125), {Position = c}):Play()
+                            end
+                        end
+                    )
+                    task.spawn(
+                        function()
+                            repeat task.wait() until xo.Window and xo.Window.Root
+                            m(
+                                xo.Window.Root:GetPropertyChangedSignal "Visible",
+                                function()
+                                    if xo.Window.Root.Visible then
+                                        s.Frame.ImageTransparency = 0
+                                    else
+                                        s.Frame.ImageTransparency = 0.5
+                                    end
+                                end
+                            )
+                            pcall(
+                                function()
+                                    repeat task.wait() until not xo.Window.Root.Visible
+                                    if s.Frame then
+                                        s.Frame.ImageTransparency = 0.5
+                                    end
+                                end
+                            )
+                        end
+                    )
                     return s
                 end
             o.Frame =
@@ -2392,6 +2451,7 @@ local aa = {
             z.SetDesc = A.SetDesc
             z.Lock = A.Lock
             z.UnLock = A.UnLock
+            z.IsLocked = A.IsLocked
             local B =
                 s(
                 "Frame",
@@ -2836,6 +2896,12 @@ local aa = {
                     ab()
                 end
             )
+            p.AddSignal(
+                A.LockButton:GetPropertyChangedSignal "Visible",
+                function()
+                    z.IsLocked = A.LockButton.Visible
+                end
+            )
             z:Display()
             y.Options[w] = z
             return z
@@ -2875,6 +2941,7 @@ local aa = {
             l.SetDesc = m.SetDesc
             l.Lock = m.Lock
             l.UnLock = m.UnLock
+            l.IsLocked = m.IsLocked
             local search = ac(f.Textbox)()
             local n, o =
                 e(
@@ -2994,8 +3061,8 @@ local aa = {
                     v.Position = UDim2.fromOffset(p.AbsolutePosition.X - 1, p.AbsolutePosition.Y - 5 - w)
                 end, 0
             local y, z = function()
-                if #l.Values > 10 then
-                    v.Size = UDim2.fromOffset(160, 392)
+                if #l.Values > 5 then
+                    v.Size = UDim2.fromOffset(160, 244)
                 else
                     v.Size = UDim2.fromOffset(160, s.AbsoluteContentSize.Y + 10)
                 end
@@ -3033,6 +3100,12 @@ local aa = {
                 else l:UpdateText()
                 end
             end)
+            c.AddSignal(
+                m.LockButton:GetPropertyChangedSignal "Visible",
+                function()
+                    l.IsLocked = m.LockButton.Visible
+                end
+            )
             function l.Open(B)
                 l.Opened = true
                 A.ScrollingEnabled = false
@@ -3346,6 +3419,7 @@ local aa = {
             h.SetDesc = i.SetDesc
             h.Lock = i.Lock
             h.UnLock = i.UnLock
+            h.IsLocked = i.IsLocked
             local j = ac(aj.Textbox)(i.Frame, true)
             j.Frame.Position = UDim2.new(1, -10, 0.5, 0)
             j.Frame.AnchorPoint = Vector2.new(1, 0.5)
@@ -3398,6 +3472,12 @@ local aa = {
                 i:Destroy()
                 g.Options[e] = nil
             end
+            ai(
+                i.LockButton:GetPropertyChangedSignal "Visible",
+                function()
+                    h.IsLocked = i.LockButton.Visible
+                end
+            )
             g.Options[e] = h
             return h
         end
@@ -3432,6 +3512,7 @@ local aa = {
             h.SetDesc = j.SetDesc
             h.Lock = j.Lock
             h.UnLock = j.UnLock
+            h.IsLocked = j.IsLocked
             local k =
                 ai(
                 "TextLabel",
@@ -3609,6 +3690,12 @@ local aa = {
                     end
                 end
             )
+            ah.AddSignal(
+                j.LockButton:GetPropertyChangedSignal "Visible",
+                function()
+                    h.IsLocked = j.LockButton.Visible
+                end
+            )
             g.Options[e] = h
             return h
         end
@@ -3654,6 +3741,7 @@ local aa = {
             h.SetDesc = j.SetDesc
             h.Lock = j.Lock
             h.UnLock = j.UnLock
+            h.IsLocked = j.IsLocked
             local k =
                 ai(
                 "ImageLabel",
@@ -3748,6 +3836,12 @@ local aa = {
                     end
                 end
             )
+            ah.AddSignal(
+                j.LockButton:GetPropertyChangedSignal "Visible",
+                function()
+                    h.IsLocked = j.LockButton.Visible
+                end
+            )
             function h.OnChanged(p, s)
                 h.Changed = s
                 s(h.Value)
@@ -3790,6 +3884,7 @@ local aa = {
             h.SetDesc = i.SetDesc
             h.Lock = i.Lock
             h.UnLock = i.UnLock
+            h.IsLocked = i.IsLocked
             local j, k =
                 ai(
                     "ImageLabel",
@@ -3850,6 +3945,12 @@ local aa = {
                 i.Frame.MouseButton1Click,
                 function()
                     h:SetValue(not h.Value)
+                end
+            )
+            ah.AddSignal(
+                i.LockButton:GetPropertyChangedSignal "Visible",
+                function()
+                    h.IsLocked = i.LockButton.Visible
                 end
             )
             h:SetValue(h.Value)
