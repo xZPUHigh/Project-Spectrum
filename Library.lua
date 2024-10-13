@@ -6,7 +6,9 @@
     Author: dawid
     License: MIT
     GitHub: https://github.com/dawid-scripts/Fluent
---]]
+]]
+
+
 local a, b = {
     {
         1,
@@ -20,22 +22,23 @@ local a, b = {
                 "ModuleScript",
                 {"Themes"},
                 {
-                    {48, "ModuleScript", {"Amethyst"}},
-                    {49, "ModuleScript", {"Aqua"}},
-                    {50, "ModuleScript", {"Dark"}},
-                    {51, "ModuleScript", {"Darker"}},
-                    {52, "ModuleScript", {"Light"}},
-                    {53, "ModuleScript", {"Rose"}},
-                    {54, "ModuleScript", {"Dark Violet"}},
-                    {55, "ModuleScript", {"Blue"}},
-                    {56, "ModuleScript", {"Vampire"}},
-                    {57, "ModuleScript", {"Rainbow"}},
-                    {58, "ModuleScript", {"Luffy"}},
-                    {59, "ModuleScript", {"Green"}},
-                    {60, "ModuleScript", {"Black"}},
-					{61, "ModuleScript", {"Vynixu"}},
+                    {48,"ModuleScript",{"Amethyst"}},
+                    {49,"ModuleScript",{"Aqua"}},
+                    {50,"ModuleScript",{"Dark"}},
+                    {51,"ModuleScript",{"Darker"}},
+                    {52,"ModuleScript",{"Light"}},
+                    {53,"ModuleScript",{"Rose"}},
+                    {54,"ModuleScript",{"Dark Violet"}},
+                    {55,"ModuleScript",{"Blue"}},
+                    {56,"ModuleScript",{"Vampire"}},
+                    {57,"ModuleScript",{"Rainbow"}},
+                    {58,"ModuleScript",{"Luffy"}},
+                    {59,"ModuleScript",{"Green"}},
+                    {60,"ModuleScript",{"Black"}}
                 }
             },
+
+
             {
                 19,
                 "ModuleScript",
@@ -137,13 +140,13 @@ local aa = {
             Window = nil,
             WindowFrame = nil,
             Unloaded = false,
-            Theme = "Dark",
+            Theme = "Darker",
             DialogOpen = false,
             UseAcrylic = false,
             Acrylic = false,
-            Transparency = true,
+            Transparency = false,
             MinimizeKeybind = nil,
-            MinimizeKey = Enum.KeyCode.Delete,
+            MinimizeKey = Enum.KeyCode.RightShift,
             GUI = w
         }
         function x.SafeCallback(y, z, ...)
@@ -173,12 +176,8 @@ local aa = {
         end
         local y = e(o.Icons).assets
         function x.GetIcon(z, A)
-            if A ~= nil then
-                if y["lucide-" .. A] then
-                    return y["lucide-" .. A]
-                elseif tonumber(A) then
-                    return "rbxassetid://" .. A
-                end
+            if A ~= nil and y["lucide-" .. A] then
+                return y["lucide-" .. A]
             end
             return nil
         end
@@ -546,7 +545,6 @@ local aa = {
                     FontFace = Font.new "rbxasset://fonts/families/GothamSSm.json",
                     TextColor3 = Color3.fromRGB(200, 200, 200),
                     TextSize = 14,
-                    RichText = true,
                     TextWrapped = true,
                     TextXAlignment = Enum.TextXAlignment.Center,
                     TextYAlignment = Enum.TextYAlignment.Center,
@@ -681,7 +679,6 @@ local aa = {
                         Enum.FontStyle.Normal
                     ),
                     Text = "Dialog",
-                    RichText = true,
                     TextColor3 = Color3.fromRGB(240, 240, 240),
                     TextSize = 22,
                     TextXAlignment = Enum.TextXAlignment.Left,
@@ -776,7 +773,6 @@ local aa = {
                         Enum.FontStyle.Normal
                     ),
                     Text = m,
-                    RichText = true,
                     TextColor3 = Color3.fromRGB(240, 240, 240),
                     TextSize = 13,
                     TextXAlignment = Enum.TextXAlignment.Left,
@@ -792,7 +788,6 @@ local aa = {
                 {
                     FontFace = Font.new "rbxasset://fonts/families/GothamSSm.json",
                     Text = n,
-                    RichText = true,
                     TextColor3 = Color3.fromRGB(200, 200, 200),
                     TextSize = 12,
                     TextWrapped = true,
@@ -968,7 +963,6 @@ local aa = {
                 {
                     FontFace = Font.new "rbxasset://fonts/families/GothamSSm.json",
                     Text = q.Content,
-                    RichText = true,
                     TextColor3 = Color3.fromRGB(240, 240, 240),
                     TextSize = 14,
                     TextXAlignment = Enum.TextXAlignment.Left,
@@ -986,7 +980,6 @@ local aa = {
                 {
                     FontFace = Font.new "rbxasset://fonts/families/GothamSSm.json",
                     Text = q.SubContent,
-                    RichText = true,
                     TextColor3 = Color3.fromRGB(240, 240, 240),
                     TextSize = 14,
                     TextXAlignment = Enum.TextXAlignment.Left,
@@ -1181,7 +1174,7 @@ local aa = {
             if t:GetIcon(r) then
                 r = t:GetIcon(r)
             end
-            if r == "" or r == nil then
+            if r == "" or nil then
                 r = nil
             end
             x.Frame =
@@ -1611,24 +1604,6 @@ local aa = {
                     }
                 end
             )
-            o.MaxButton =
-                q(
-                i.Max,
-                UDim2.new(1, -40, 0, 4),
-                o.Frame,
-                function()
-                    n.Window.Maximize(not n.Window.Maximized)
-                end
-            )
-            o.MinButton =
-                q(
-                i.Min,
-                UDim2.new(1, -80, 0, 4),
-                o.Frame,
-                function()
-                    p.Window:Minimize()
-                end
-            )
             return o
         end
     end,
@@ -1708,7 +1683,7 @@ local aa = {
                     TextTransparency = 0,
                     FontFace = Font.new("rbxassetid://12187365364", Enum.FontWeight.SemiBold, Enum.FontStyle.Normal),
                     TextSize = 28,
-                    TextXAlignment = "Left",
+                    TextXAlignment = Enum.TextXAlignment.Left,
                     TextYAlignment = "Center",
                     Size = UDim2.new(1, -16, 0, 28),
                     Position = UDim2.fromOffset(t.TabWidth + 26, 56),
@@ -1923,7 +1898,6 @@ local aa = {
                     {
                         FontFace = Font.new "rbxasset://fonts/families/GothamSSm.json",
                         Text = O.Content,
-                        RichText = true,
                         TextColor3 = Color3.fromRGB(240, 240, 240),
                         TextSize = 14,
                         TextXAlignment = Enum.TextXAlignment.Left,
@@ -1996,7 +1970,6 @@ local aa = {
                         BorderColor3 = Color3.new(0, 0, 0),
                         Font = Enum.Font.SourceSans,
                         Text = "",
-                        RichText = true,
                         TextColor3 = Color3.new(0, 0, 0),
                         BackgroundTransparency = 1,
                         TextSize = 14
@@ -2245,7 +2218,6 @@ local aa = {
                                         Enum.FontStyle.Normal
                                     ),
                                     Text = D,
-                                    RichText = true,
                                     TextColor3 = Color3.fromRGB(240, 240, 240),
                                     TextSize = 13,
                                     TextXAlignment = Enum.TextXAlignment.Left,
@@ -2686,7 +2658,6 @@ local aa = {
                             Enum.FontStyle.Normal
                         ),
                         Text = "Value",
-                        RichText = true,
                         TextColor3 = Color3.fromRGB(240, 240, 240),
                         TextSize = 13,
                         TextXAlignment = Enum.TextXAlignment.Left,
@@ -2748,7 +2719,7 @@ local aa = {
                     TopImage = "rbxassetid://6276641225",
                     ScrollBarImageColor3 = Color3.fromRGB(255, 255, 255),
                     ScrollBarImageTransparency = 0.95,
-                    ScrollBarThickness = 10,
+                    ScrollBarThickness = 4,
                     BorderSizePixel = 0,
                     CanvasSize = UDim2.fromScale(0, 0)
                 },
@@ -2893,7 +2864,6 @@ local aa = {
                             {
                                 FontFace = Font.new "rbxasset://fonts/families/GothamSSm.json",
                                 Text = I,
-                                RichText = true,
                                 TextColor3 = Color3.fromRGB(200, 200, 200),
                                 TextSize = 13,
                                 TextXAlignment = Enum.TextXAlignment.Left,
@@ -3196,7 +3166,6 @@ local aa = {
                         Enum.FontStyle.Normal
                     ),
                     Text = f.Default,
-                    RichText = true,
                     TextColor3 = Color3.fromRGB(240, 240, 240),
                     TextSize = 13,
                     TextXAlignment = Enum.TextXAlignment.Center,
@@ -3359,14 +3328,7 @@ local aa = {
         function aj.New(c, d)
             assert(d.Title, "Paragraph - Missing Title")
             d.Content = d.Content or ""
-
-
-
             local e = ac(ag.Element)(d.Title, d.Content, aj.Container, false)
-
-            e.TitleLabel.RichText = true
-            e.DescLabel.RichText = true
-
             if d.Section then
                 e.TitleLabel.TextXAlignment = Enum.TextXAlignment.Center
                 e.Frame.BackgroundTransparency = 0.8
@@ -3390,7 +3352,6 @@ local aa = {
                     e.DescLabel.TextSize = d.DescSize
                 end)
             end
-
             e.Border.Transparency = 0.6
             return e
         end
@@ -3445,7 +3406,6 @@ local aa = {
                     {
                         FontFace = Font.new "rbxasset://fonts/families/GothamSSm.json",
                         Text = "Value",
-                        RichText = true,
                         TextSize = 12,
                         TextWrapped = true,
                         TextXAlignment = Enum.TextXAlignment.Right,
@@ -3880,10 +3840,8 @@ local aa = {
                 ["lucide-edit-2"] = "rbxassetid://10723344885",
                 ["lucide-edit-3"] = "rbxassetid://10723345088",
                 ["lucide-egg"] = "rbxassetid://10723345518",
-                ["lucide-egg-New"] = "rbxassetid://16479252963",
                 ["lucide-egg-fried"] = "rbxassetid://10723345347",
                 ["lucide-electricity"] = "rbxassetid://10723345749",
-                ["lucide-Potion"] = "rbxassetid://17531455040",
                 ["lucide-electricity-off"] = "rbxassetid://10723345643",
                 ["lucide-equal"] = "rbxassetid://10723345990",
                 ["lucide-equal-not"] = "rbxassetid://10723345866",
@@ -4065,7 +4023,6 @@ local aa = {
                 ["lucide-info"] = "rbxassetid://10723415903",
                 ["lucide-inspect"] = "rbxassetid://10723416057",
                 ["lucide-italic"] = "rbxassetid://10723416195",
-                ["lucide-offers"] = "rbxassetid://18232095099",
                 ["lucide-japanese-yen"] = "rbxassetid://10723416363",
                 ["lucide-joystick"] = "rbxassetid://10723416527",
                 ["lucide-key"] = "rbxassetid://10723416652",
@@ -4106,7 +4063,6 @@ local aa = {
                 ["lucide-list-ordered"] = "rbxassetid://10723427199",
                 ["lucide-list-plus"] = "rbxassetid://10723427334",
                 ["lucide-list-start"] = "rbxassetid://10723427494",
-                ["lucide-loader-circle"] = "rbxassetid://116615815248543",
                 ["lucide-list-video"] = "rbxassetid://10723427619",
                 ["lucide-list-x"] = "rbxassetid://10723433655",
                 ["lucide-loader"] = "rbxassetid://10723434070",
@@ -4161,7 +4117,6 @@ local aa = {
                 ["lucide-mountain"] = "rbxassetid://10734897956",
                 ["lucide-mountain-snow"] = "rbxassetid://10734897665",
                 ["lucide-mouse"] = "rbxassetid://10734898592",
-                ["lucide-Taps"] = "rbxassetid://17444357192",
                 ["lucide-mouse-pointer"] = "rbxassetid://10734898476",
                 ["lucide-mouse-pointer-2"] = "rbxassetid://10734898194",
                 ["lucide-mouse-pointer-click"] = "rbxassetid://10734898355",
@@ -4308,8 +4263,6 @@ local aa = {
                 ["lucide-skip-back"] = "rbxassetid://10734961526",
                 ["lucide-skip-forward"] = "rbxassetid://10734961809",
                 ["lucide-skull"] = "rbxassetid://10734962068",
-                ["lucide-chevrons-left-right-ellipsis"] = "rbxassetid://130313353276059",
-				["lucide-oneskull"] = "rbxassetid://12249656848",
                 ["lucide-slack"] = "rbxassetid://10734962339",
                 ["lucide-slash"] = "rbxassetid://10734962600",
                 ["lucide-slice"] = "rbxassetid://10734963024",
@@ -4327,7 +4280,6 @@ local aa = {
                 ["lucide-sprout"] = "rbxassetid://10734965572",
                 ["lucide-square"] = "rbxassetid://10734965702",
                 ["lucide-star"] = "rbxassetid://10734966248",
-                ["lucide-sparkles"] = "rbxassetid://17876769307",
                 ["lucide-star-half"] = "rbxassetid://10734965897",
                 ["lucide-star-off"] = "rbxassetid://10734966097",
                 ["lucide-stethoscope"] = "rbxassetid://10734966384",
@@ -4350,7 +4302,6 @@ local aa = {
                 ["lucide-switch-camera"] = "rbxassetid://10734975214",
                 ["lucide-sword"] = "rbxassetid://10734975486",
                 ["lucide-swords"] = "rbxassetid://10734975692",
-                ["lucide-Shell"] = "rbxassetid://18609011469",
                 ["lucide-syringe"] = "rbxassetid://10734975932",
                 ["lucide-table"] = "rbxassetid://10734976230",
                 ["lucide-table-2"] = "rbxassetid://10734976097",
@@ -4427,7 +4378,6 @@ local aa = {
                 ["lucide-watch"] = "rbxassetid://10747376722",
                 ["lucide-waves"] = "rbxassetid://10747376931",
                 ["lucide-webcam"] = "rbxassetid://10747381992",
-                ["lucide-webhook"] = "rbxassetid://18623596759",
                 ["lucide-wifi"] = "rbxassetid://10747382504",
                 ["lucide-wifi-off"] = "rbxassetid://10747382268",
                 ["lucide-wind"] = "rbxassetid://10747382750",
@@ -4437,13 +4387,8 @@ local aa = {
                 ["lucide-x-circle"] = "rbxassetid://10747383819",
                 ["lucide-x-octagon"] = "rbxassetid://10747384037",
                 ["lucide-x-square"] = "rbxassetid://10747384217",
-                ["lucide-zoom-in"] = "rbxassetid://10747384552", --Peroxy Hub
-                ["lucide-zoom-out"] = "rbxassetid://10747384679",
-                ["lucide-square-stack"] = "rbxassetid://17205419392",
-                ["lucide-grid-2x2"] = "rbxassetid://17206046174",
-                ["lucide-tp-White"] = "rbxassetid://17250519810",
-                ["lucide-tp-Color"] = "rbxassetid://17250523848",
-                ["lucide-teleporter"] = "rbxassetid://16714068111"
+                ["lucide-zoom-in"] = "rbxassetid://10747384552",
+                ["lucide-zoom-out"] = "rbxassetid://10747384679"
             }
         }
     end,
@@ -5134,24 +5079,7 @@ local aa = {
     end,
     [47] = function()
         local aa, ab, ac, ad, ae = b(47)
-        local af = {
-            Names = {
-                "Dark",
-                "Darker",
-                "Light",
-                "Aqua",
-                "Amethyst",
-                "Rose",
-                "Dark Violet",
-                "Blue",
-                "Vampire",
-                "Rainbow",
-                "Luffy",
-                "Green",
-                "Black",
-				"Vynixu"
-            }
-        }
+        local af = {Names = {'Dark','Darker','Light','Aqua','Amethyst','Rose',"Dark Violet","Blue","Vampire","Rainbow","Luffy","Green","Black"}}
         for ag, ah in next, ab:GetChildren() do
             local aj = ac(ah)
             af[aj.Name] = aj
@@ -5630,7 +5558,7 @@ local aa = {
         local c, U, a2, a3, a4 = b(60)
         return {
             Name = "Black",
-            Accent = Color3.fromRGB(96, 205, 255),
+            Accent = Color3.fromRGB(20, 20, 20),
             AcrylicMain = Color3.fromRGB(0, 0, 0),
             AcrylicBorder = Color3.fromRGB(0, 0, 0),
             AcrylicGradient = ColorSequence.new(Color3.fromRGB(20, 20, 20), Color3.fromRGB(0, 0, 0)),
@@ -5652,7 +5580,6 @@ local aa = {
             Input = Color3.fromRGB(100, 100, 100),
             InputFocused = Color3.fromRGB(20, 10, 30),
             InputIndicator = Color3.fromRGB(170, 150, 190),
-            InputIndicatorFocus = Color3.fromRGB(0, 103, 192),
             Dialog = Color3.fromRGB(30, 30, 30),
             DialogHolder = Color3.fromRGB(40, 40, 40),
             DialogHolderLine = Color3.fromRGB(60, 60, 60),
@@ -5665,39 +5592,6 @@ local aa = {
             SubText = Color3.fromRGB(170, 170, 170),
             Hover = Color3.fromRGB(100, 100, 100),
             HoverChange = 0.04
-        }
-		end,
-	    [61] = function()
-        local c, U, a2, a3, a4 = b(61)
-        return {
-	Name = "Vynixu",
-	Accent = Color3.fromRGB(90, 235, 45),
-
-	AcrylicMain = Color3.fromRGB(30, 30, 30),
-	AcrylicBorder = Color3.fromRGB(60, 60, 60),
-	AcrylicGradient = ColorSequence.new(Color3.fromRGB(25, 25, 25), Color3.fromRGB(15, 15, 15)),
-	AcrylicNoise = 0.94,
-
-	TitleBarLine = Color3.fromRGB(65, 65, 65),
-	Tab = Color3.fromRGB(100, 100, 100),
-
-	Element = Color3.fromRGB(70, 70, 70),
-	ElementBorder = Color3.fromRGB(25, 25, 25),
-	InElementBorder = Color3.fromRGB(55, 55, 55),
-	ElementTransparency = 0.82,
-
-	DropdownFrame = Color3.fromRGB(120, 120, 120),
-	DropdownHolder = Color3.fromRGB(35, 35, 35),
-	DropdownBorder = Color3.fromRGB(25, 25, 25),
-
-	Dialog = Color3.fromRGB(35, 35, 35),
-	DialogHolder = Color3.fromRGB(25, 25, 25),
-	DialogHolderLine = Color3.fromRGB(20, 20, 20),
-	DialogButton = Color3.fromRGB(35, 35, 35),
-	DialogButtonBorder = Color3.fromRGB(55, 55, 55),
-	DialogBorder = Color3.fromRGB(50, 50, 50),
-	DialogInput = Color3.fromRGB(45, 45, 45),
-	DialogInputLine = Color3.fromRGB(120, 120, 120)
         }
     end
 }
