@@ -1,4 +1,4 @@
---[[ Hey Sub To xZPUHigh And Thx For Using!
+--[[ Hey Subscribe To xZPUHigh And Thank you For Using!
 
 ██████╗░██████╗░░█████╗░░░░░░██╗███████╗░█████╗░████████╗
 ██╔══██╗██╔══██╗██╔══██╗░░░░░██║██╔════╝██╔══██╗╚══██╔══╝
