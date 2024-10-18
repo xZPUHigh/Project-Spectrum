@@ -398,8 +398,8 @@ local ObjectTree = {
 	}
 }
 
-if game:GetService("CoreGui"):FindFirstChild('Normal Hub') then
-	game:GetService("CoreGui"):FindFirstChild('Normal Hub'):Destroy()
+if game:GetService("CoreGui"):FindFirstChild('Project Spectrum') then
+	game:GetService("CoreGui"):FindFirstChild('Project Spectrum'):Destroy()
 end
 
 -- Holds direct closure data
@@ -424,7 +424,7 @@ local ClosureBindings = {
 		local ProtectGui = protectgui or (syn and syn.protect_gui) or function() end
 		local GUI = New("ScreenGui", {
 			Parent = RunService:IsStudio() and LocalPlayer.PlayerGui or game:GetService("CoreGui"),
-			Name = "Normal Hub"
+			Name = "Project Spectrum"
 		})
 
 
