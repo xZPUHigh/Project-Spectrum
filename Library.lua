@@ -449,7 +449,7 @@ local ClosureBindings = {
 			Acrylic = false,
 			Transparency = true,
 			MinimizeKeybind = nil,
-			MinimizeKey = Enum.KeyCode.LeftControl,
+			MinimizeKey = Enum.KeyCode.RightControl,
 
 			GUI = GUI,
 		}
@@ -524,7 +524,7 @@ local ClosureBindings = {
 			Config.Size = Config.Size or UDim2.fromOffset(590, 470)
 			Config.Acrylic = false
 			Config.Theme = Config.Theme or "Dark"
-			Config.MinimizeKey = Config.MinimizeKey or Enum.KeyCode.LeftControl
+			Config.MinimizeKey = Config.MinimizeKey or Enum.KeyCode.RightControl
 
 			if Library.Window then
 				print("You cannot create more than one window.")
